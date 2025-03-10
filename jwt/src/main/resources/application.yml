@@ -1,0 +1,44 @@
+#dotenv:
+#  enabled: true  # .env파일설정.    KAKAO_CLIENT_ID 직접 쓰려면 없어도됨.
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:security
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+    open-in-view: false
+  devtools:
+    livereload:
+      enabled: true
+    freemarker:
+      cache: false
+    restart:
+      enabled: true
+  thymeleaf:
+    cache: false
+
+
+jwt:
+  secret : ${JWT_SECRET_KEY}
+    #키는 길이만 충분하고 노출되지만 않으면 됨. gpt한테 만들어하던가 내가 막 타자 아무렇게 해도됨
+  expiration_access: 1800000  #30분
+
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+    org.springframework.security : DEBUG
+
+
+
+
