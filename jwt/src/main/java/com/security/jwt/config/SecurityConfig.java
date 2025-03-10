@@ -68,14 +68,7 @@ public class SecurityConfig {
         http
             .exceptionHandling(ex -> ex
                 .authenticationEntryPoint((request, response, authException) -> {
-                    //인증관련에러만 처리하려는 곳이지만, jwtAccessTokenCheckAnd~~Filter가 filterchain에 있고
-                    //회원가입기능도 FilterChian을 타서..  500에러라 생각하는 것도 여기에 걸림.
-                    // if 처리하거나 ExceptionHandler로 처리 해야됨
-                    System.out.println(authException.getClass().getName());
-                    if( !( authException instanceof AuthenticationException )){
-                        throw  authException;  //인증관련에러가 아닌경우(controller 등에서 발생한 에러) 그냥 던짐
-                    }
-                    System.out.println("여기로 오면 안되는데!!!");
+                 
 
                     String errorCause=request.getAttribute("ERROR_CAUSE")!=null ?   (String)request.getAttribute("ERROR_CAUSE") :null ;
                     //인증없이(access token없이) 인증필요한 곳에 로그인했을 떄.
